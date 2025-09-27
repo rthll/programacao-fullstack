@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, AlertTriangle, User, Calendar, MapPin } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { fbiAPI, mockWantedPersons } from '../services/api';
+import { fbiAPI } from '../services/api';
 
 const PersonDetail = () => {
   const { id } = useParams();
