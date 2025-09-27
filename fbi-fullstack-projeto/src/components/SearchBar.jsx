@@ -1,70 +1,32 @@
-import React from 'react';
-import {
-  TextField,
-  InputAdornment,
-  IconButton,
-  Paper,
-} from '@mui/material';
-import { Search, Clear } from '@mui/icons-material';
+import React, { useState } from 'react';
 
-const SearchBar = ({ searchTerm, onSearchChange, onClear }) => {
+const SearchBar = ({ searchTerm, onSearchChange, onSubmit, onClear }) => {
+  const [input, setInput] = useState(searchTerm);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearchChange(input);
+    if (onSubmit) onSubmit();
+  };
+
   return (
-    <Paper 
-      elevation={2}
-      sx={{ 
-        p: 1,
-        borderRadius: 3,
-        mb: 3,
-      }}
-    >
-      <TextField
-        fullWidth
-        variant="outlined"
-        placeholder="Buscar por nome, crime ou características..."
-        value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Search color="action" />
-            </InputAdornment>
-          ),
-          endAdornment: searchTerm && (
-            <InputAdornment position="end">
-              <IconButton
-                onClick={onClear}
-                size="small"
-                sx={{ 
-                  color: 'text.secondary',
-                  '&:hover': {
-                    color: 'text.primary',
-                  },
-                }}
-              >
-                <Clear />
-              </IconButton>
-            </InputAdornment>
-          ),
-          sx: {
-            '& .MuiOutlinedInput-notchedOutline': {
-              border: 'none',
-            },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              border: 'none',
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              border: '2px solid',
-              borderColor: 'primary.main',
-            },
-          },
-        }}
-        sx={{
-          '& .MuiInputBase-root': {
-            borderRadius: 2,
-          },
-        }}
+    <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Buscar por nome, crime ou característica"
+        className="flex-grow px-4 py-2 border rounded"
       />
-    </Paper>
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Buscar
+      </button>
+      {searchTerm && (
+        <button type="button" onClick={onClear} className="text-sm text-gray-500 hover:text-gray-700">
+          Limpar
+        </button>
+      )}
+    </form>
   );
 };
 

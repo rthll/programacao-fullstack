@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import {
   Card,
   CardMedia,
@@ -20,29 +19,27 @@ import {
   Warning,
 } from '@mui/icons-material';
 
-const WantedCard = ({ person }) => {
+const WantedCard = ({ person, onViewDetails }) => {
   return (
-    <Card 
-      sx={{ 
+    <Card
+      sx={{
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        position: 'relative',
         borderRadius: 2,
         overflow: 'hidden',
+        boxShadow: 2,
+        transform: 'scale(0.9)',
       }}
     >
-      {/* Imagem */}
       <Box sx={{ position: 'relative' }}>
         <CardMedia
           component="img"
-          height="240"
-          image={person.images?.[0]?.original || "https://via.placeholder.com/300x400?text=Foto+Indisponível"}
+          height="100"
+          image={person.images?.[0]?.original || 'https://via.placeholder.com/300x400?text=Foto+Indisponível'}
           alt={person.title}
           sx={{ objectFit: 'cover' }}
         />
-        
-        {/* Badge de perigo */}
         {person.warning_message && (
           <Chip
             icon={<Warning />}
@@ -51,47 +48,45 @@ const WantedCard = ({ person }) => {
             size="small"
             sx={{
               position: 'absolute',
-              top: 8,
-              left: 8,
+              top: 6,
+              left: 6,
               fontWeight: 'bold',
-              fontSize: '0.75rem',
+              fontSize: '0.65rem',
+              height: 22,
             }}
           />
         )}
-        
-        {/* ID Badge */}
         <Chip
           label={`ID: ${person.uid}`}
           size="small"
           sx={{
             position: 'absolute',
-            top: 8,
-            right: 8,
+            top: 6,
+            right: 6,
             backgroundColor: 'rgba(0,0,0,0.7)',
             color: 'white',
-            fontSize: '0.7rem',
+            fontSize: '0.6rem',
+            height: 22,
           }}
         />
       </Box>
 
-      {/* Conteúdo */}
-      <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-        <Typography 
-          variant="h6" 
-          component="h3" 
-          gutterBottom
-          sx={{ 
+      <CardContent sx={{ flexGrow: 1, pb: 1, pt: 1, px: 2 }}>
+        <Typography
+          variant="subtitle2"
+          component="h3"
+          sx={{
             fontWeight: 600,
+            fontSize: '0.85rem',
             lineHeight: 1.2,
-            mb: 2,
+            mb: 1,
           }}
         >
           {person.title}
         </Typography>
 
-        {/* Crimes */}
         {person.subjects && (
-          <Box sx={{ mb: 2 }}>
+          <Box sx={{ mb: 1 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {person.subjects.map((subject, idx) => (
                 <Chip
@@ -100,19 +95,18 @@ const WantedCard = ({ person }) => {
                   color="error"
                   variant="outlined"
                   size="small"
-                  sx={{ fontSize: '0.7rem' }}
+                  sx={{ fontSize: '0.6rem', height: 20 }}
                 />
               ))}
             </Box>
           </Box>
         )}
 
-        {/* Informações básicas */}
-        <Grid container spacing={1} sx={{ mb: 2 }}>
+        <Grid container spacing={1} sx={{ mb: 1 }}>
           {person.sex && (
             <Grid item xs={6}>
-              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '0.875rem' }}>
-                <Person sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '0.75rem' }}>
+                <Person sx={{ fontSize: 13, mr: 0.5, color: 'text.secondary' }} />
                 <Typography variant="body2" color="text.secondary">
                   {person.sex}
                 </Typography>
@@ -121,8 +115,8 @@ const WantedCard = ({ person }) => {
           )}
           {person.age_range && (
             <Grid item xs={6}>
-              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '0.875rem' }}>
-                <CalendarToday sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '0.75rem' }}>
+                <CalendarToday sx={{ fontSize: 13, mr: 0.5, color: 'text.secondary' }} />
                 <Typography variant="body2" color="text.secondary">
                   {person.age_range}
                 </Typography>
@@ -131,8 +125,8 @@ const WantedCard = ({ person }) => {
           )}
           {person.race && (
             <Grid item xs={12}>
-              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '0.875rem' }}>
-                <LocationOn sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', fontSize: '0.75rem' }}>
+                <LocationOn sx={{ fontSize: 13, mr: 0.5, color: 'text.secondary' }} />
                 <Typography variant="body2" color="text.secondary">
                   {person.race}
                 </Typography>
@@ -141,17 +135,16 @@ const WantedCard = ({ person }) => {
           )}
         </Grid>
 
-        {/* Recompensa */}
         {person.reward_text && (
-          <Alert 
-            severity="warning" 
-            sx={{ 
-              mb: 2, 
+          <Alert
+            severity="warning"
+            sx={{
+              mb: 1,
               py: 0.5,
               '& .MuiAlert-message': {
-                fontSize: '0.875rem',
+                fontSize: '0.75rem',
                 fontWeight: 600,
-              }
+              },
             }}
           >
             💰 {person.reward_text}
@@ -159,21 +152,20 @@ const WantedCard = ({ person }) => {
         )}
       </CardContent>
 
-      {/* Ações */}
       <CardActions sx={{ p: 2, pt: 0 }}>
         <Button
-          component={RouterLink}
-          to={`/person/${person.uid}`}
+          onClick={onViewDetails}
           variant="contained"
           fullWidth
           startIcon={<Visibility />}
           sx={{
             borderRadius: 2,
-            py: 1,
+            py: 0.5,
+            fontSize: '0.75rem',
             fontWeight: 600,
-            boxShadow: 2,
+            boxShadow: 1,
             '&:hover': {
-              boxShadow: 4,
+              boxShadow: 3,
             },
           }}
         >
