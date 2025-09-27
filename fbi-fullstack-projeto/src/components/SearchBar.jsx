@@ -1,11 +1,9 @@
-// src/components/SearchBar.jsx
 import React from 'react';
 import {
   TextField,
   InputAdornment,
   IconButton,
   Paper,
-  Box,
 } from '@mui/material';
 import { Search, Clear } from '@mui/icons-material';
 

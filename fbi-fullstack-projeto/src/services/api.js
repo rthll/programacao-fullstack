@@ -47,7 +47,7 @@ export const fbiAPI = {
   }
 };
 
-// Mock data para desenvolvimento
+// Mock data criado somente para desenvolvimento
 export const mockWantedPersons = [
   {
     uid: "1",

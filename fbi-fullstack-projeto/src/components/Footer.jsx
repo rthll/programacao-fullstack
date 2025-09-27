@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import React from 'react';
 import { Box, Container, Typography, Link, Stack } from '@mui/material';
 
