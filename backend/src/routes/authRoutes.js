@@ -38,10 +38,12 @@ router.post("/login", (req, res) => {
     username: user.username
   };
 
-  res.json({
-    message: "Login realizado",
-    user: req.session.user
-  });
+res.json({
+  success: true, 
+  message: "Login realizado",
+  user: req.session.user
+});
+
 });
 
 // Logout

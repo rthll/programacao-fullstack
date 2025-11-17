@@ -1,29 +1,38 @@
 import express from "express";
-import DataModel from "../models/dataModel.js";
+import WantedPerson from "../models/wantedModel.js";
 
 const router = express.Router();
 
-// Middleware reutilizado
+
 function requireAuth(req, res, next) {
-  if (!req.session.user) {
+  if (!req.session?.user) {
     return res.status(401).json({ error: "Não autorizado" });
   }
   next();
 }
 
-// Inserir dado
-router.post("/insert", requireAuth, (req, res) => {
-  const { value } = req.body;
+router.post("/wanted", async (req, res) => {
+  console.log(' Dados recebidos:', req.body); 
 
-  const record = DataModel.insert(req.session.user.id, value);
-
-  res.json({ message: "Dado inserido", record });
+  try {
+    const newPerson = new WantedPerson(req.body);
+    await newPerson.save();
+    res.status(201).json({ message: "Pessoa procurada criada com sucesso!" });
+  } catch (error) {
+    console.error(' Erro ao salvar:', error); 
+    res.status(500).json({ error: "Erro ao salvar no banco de dados." });
+  }
 });
 
-// Buscar dados do usuário
-router.get("/search", requireAuth, (req, res) => {
-  const records = DataModel.findByUser(req.session.user.id);
-  res.json(records);
+router.get("/search", async (req, res) => {
+  try {
+    const records = await WantedPerson.find().sort({ createdAt: -1 });
+    res.json(records);
+  } catch (error) {
+    console.error("Erro ao buscar procuradoS:", error);
+    res.status(500).json({ error: "Erro ao buscar procurados." });
+  }
 });
+
 
 export default router;
