@@ -1,0 +1,147 @@
+[{
+  "_id": {
+    "$oid": "691aa1a388c68abdd6700383"
+  },
+  "title": "RITYELLY",
+  "description": "SMOKEZINHA JANELAO",
+  "details": "SMOKEZINHA ",
+  "reward_text": "1000000000000",
+  "warning_message": "MAXIMO",
+  "sex": "Male",
+  "race": "LATINO",
+  "nationality": "Brasil",
+  "image": "https://media-poa1-1.cdn.whatsapp.net/v/t61.24694-24/505528458_707156578728255_696926683966134937_n.jpg?ccb=11-4&oh=01_Q5Aa3AEovL2kngSs0-KAC3opBxR2NE1ZUWTQHxKHRmDJ-_26LQ&oe=69276797&_nc_sid=5e03e0&_nc_cat=108",
+  "createdAt": {
+    "$date": "2025-11-17T04:16:35.836Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:16:35.836Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691aa23e88c68abdd6700385"
+  },
+  "title": "Tripa Seca",
+  "description": "Bandido do Velho Oeste",
+  "details": "Líder de gangue, inimigo do Chapolin",
+  "reward_text": "R$ 1.000.000",
+  "warning_message": "Armado e perigoso",
+  "sex": "Male",
+  "race": "Latino",
+  "nationality": "México",
+  "image": "https://i.imgur.com/TripaSeca.jpg",
+  "createdAt": {
+    "$date": "2025-11-17T04:19:10.887Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:19:10.887Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691aa24a88c68abdd6700387"
+  },
+  "title": "Racha Cuca",
+  "description": "Bandido do Velho Oeste",
+  "details": "Pai da Rumorosa, inimigo do Chapolin",
+  "reward_text": "R$ 800.000",
+  "warning_message": "Extremamente perigoso",
+  "sex": "Male",
+  "race": "Latino",
+  "nationality": "México",
+  "image": "https://i.imgur.com/RachaCuca.jpg",
+  "createdAt": {
+    "$date": "2025-11-17T04:19:22.165Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:19:22.165Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691aa25188c68abdd6700389"
+  },
+  "title": "Alma Negra",
+  "description": "Pirata temido",
+  "details": "Comandante de navio fantasma, rival do Chapolin",
+  "reward_text": "R$ 1.500.000",
+  "warning_message": "Cruel e traiçoeiro",
+  "sex": "Male",
+  "race": "Latino",
+  "nationality": "México",
+  "image": "https://i.imgur.com/AlmaNegra.jpg",
+  "createdAt": {
+    "$date": "2025-11-17T04:19:29.665Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:19:29.665Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691aa25b88c68abdd670038b"
+  },
+  "title": "Nazaré Tedesco",
+  "description": "Vilã clássica de novela",
+  "details": "Conhecida por empurrar pessoas da escada",
+  "reward_text": "R$ 2.000.000",
+  "warning_message": "Manipuladora e perigosa",
+  "sex": "Female",
+  "race": "Branca",
+  "nationality": "Brasil",
+  "image": "https://i.imgur.com/NazareTedesco.jpg",
+  "createdAt": {
+    "$date": "2025-11-17T04:19:39.295Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:19:39.295Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691aa26288c68abdd670038d"
+  },
+  "title": "Carminha",
+  "description": "Vilã de Avenida Brasil",
+  "details": "Mentiu, manipulou e enganou a família inteira",
+  "reward_text": "R$ 1.200.000",
+  "warning_message": "Altamente dissimulada",
+  "sex": "Female",
+  "race": "Branca",
+  "nationality": "Brasil",
+  "image": "https://i.imgur.com/Carminha.jpg",
+  "createdAt": {
+    "$date": "2025-11-17T04:19:46.683Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:19:46.683Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691aa26d88c68abdd670038f"
+  },
+  "title": "Flora",
+  "description": "Vilã de A Favorita",
+  "details": "Fingiu ser inocente, mas era assassina",
+  "reward_text": "R$ 1.800.000",
+  "warning_message": "Perigosa e manipuladora",
+  "sex": "Female",
+  "race": "Branca",
+  "nationality": "Brasil",
+  "image": "https://i.imgur.com/FloraVilã.jpg",
+  "createdAt": {
+    "$date": "2025-11-17T04:19:57.991Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-17T04:19:57.991Z"
+  },
+  "__v": 0
+}]
