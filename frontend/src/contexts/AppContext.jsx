@@ -1,10 +1,15 @@
-import React, { createContext, useContext, useReducer, useCallback, useEffect } from 'react';
-import { fbiAPI } from '../services/api';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useCallback,
+  useEffect,
+} from 'react';
 
-// CRIAR CONTEXT
+
 const AppContext = createContext(undefined);
 
-// ESTADO INICIAL
+
 const initialState = {
   persons: [],
   filteredPersons: [],
@@ -30,7 +35,9 @@ const appReducer = (state, action) => {
         persons: action.payload.items || [],
         filteredPersons: action.payload.items || [],
         total: action.payload.total || 0,
-        totalPages: Math.ceil((action.payload.total || 0) / (action.payload.items?.length || 1)),
+        totalPages: Math.ceil(
+          (action.payload.total || 0) / (action.payload.items?.length || 1)
+        ),
       };
 
     case 'SET_ERROR':
@@ -66,11 +73,10 @@ const appReducer = (state, action) => {
   }
 };
 
-// PROVIDER
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  // Carregar favoritos ao iniciar
+
   useEffect(() => {
     const saved = localStorage.getItem('fbi-favorites');
     if (saved) {
@@ -78,23 +84,31 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  // ACTIONS
-  const loadData = useCallback(async (page = 1, searchTerm = '') => {
+
+  const loadData = useCallback(async () => {
     dispatch({ type: 'SET_LOADING' });
 
     try {
-      const data = searchTerm.trim()
-        ? await fbiAPI.searchWanted(searchTerm, page)
-        : await fbiAPI.getWantedList(page);
+      const res = await fetch('http://localhost:3001/api/data/search', {
+        credentials: 'include',
+      });
 
-      dispatch({ type: 'SET_DATA', payload: data });
+      const items = await res.json();
+
+      dispatch({
+        type: 'SET_DATA',
+        payload: {
+          items,
+          total: items.length,
+        },
+      });
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
       dispatch({ type: 'SET_ERROR', payload: 'Erro ao carregar dados' });
     }
   }, []);
 
-  const setSearch = useCallback((term) => {
+  const setSearch = useCallback(term => {
     dispatch({ type: 'SET_SEARCH', payload: term });
   }, []);
 
@@ -102,23 +116,29 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: 'CLEAR_SEARCH' });
   }, []);
 
-  const setPage = useCallback((page) => {
+  const setPage = useCallback(page => {
     dispatch({ type: 'SET_PAGE', payload: page });
   }, []);
 
-  const addFavorite = useCallback((person) => {
-    if (!state.favorites.find(f => f.uid === person.uid)) {
-      dispatch({ type: 'ADD_FAVORITE', payload: person });
-    }
-  }, [state.favorites]);
+  const addFavorite = useCallback(
+    person => {
+      if (!state.favorites.find(f => f.uid === person.uid)) {
+        dispatch({ type: 'ADD_FAVORITE', payload: person });
+      }
+    },
+    [state.favorites]
+  );
 
-  const removeFavorite = useCallback((uid) => {
+  const removeFavorite = useCallback(uid => {
     dispatch({ type: 'REMOVE_FAVORITE', payload: uid });
   }, []);
 
-  const isFavorite = useCallback((uid) => {
-    return state.favorites.some(f => f.uid === uid);
-  }, [state.favorites]);
+  const isFavorite = useCallback(
+    uid => {
+      return state.favorites.some(f => f.uid === uid);
+    },
+    [state.favorites]
+  );
 
   const value = {
     state,
@@ -134,7 +154,7 @@ export const AppProvider = ({ children }) => {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
-// HOOK CUSTOMIZADO
+
 export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {
