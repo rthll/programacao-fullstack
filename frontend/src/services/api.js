@@ -3,6 +3,7 @@ import axios from 'axios';
 const LOCAL_BASE_URL = 'http://localhost:3001/api/data';
 
 export const fbiAPI = {
+
   getWantedList: async () => {
     const response = await axios.get(`${LOCAL_BASE_URL}/search`);
     return {
@@ -11,6 +12,7 @@ export const fbiAPI = {
     };
   },
 
+  // Busca por termo
   searchWanted: async (query) => {
     const response = await axios.get(`${LOCAL_BASE_URL}/search`);
     const filtered = response.data.filter(p =>
@@ -22,8 +24,12 @@ export const fbiAPI = {
     };
   },
 
-  getPersonByUID: async (uid) => {
+
+  getPersonByUID: async (id) => {
     const response = await axios.get(`${LOCAL_BASE_URL}/search`);
-    return response.data.find(p => p.uid === uid) || null;
+    
+    return response.data.find(
+      p => p.uid === id || p._id === id || p._id?.$oid === id
+    ) || null;
   },
 };
