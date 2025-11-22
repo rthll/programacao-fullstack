@@ -58,19 +58,7 @@ const WantedCard = ({ person, onViewDetails }) => {
             }}
           />
         )}
-        <Chip
-          label={`ID: ${person._id?.$oid || person._id || person.uid}`}
-          size="small"
-          sx={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            backgroundColor: 'rgba(0,0,0,0.7)',
-            color: 'white',
-            fontSize: '0.65rem',
-            height: 24,
-          }}
-        />
+       
       </Box>
 
       <CardContent sx={{ flexGrow: 1, px: 2, py: 1.5 }}>
