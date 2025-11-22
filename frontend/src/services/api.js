@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const LOCAL_BASE_URL = 'http://localhost:3001/api/data';
+const LOCAL_BASE_URL = 'https://localhost:3001/api/data';
 
 export const fbiAPI = {
 

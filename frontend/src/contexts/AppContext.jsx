@@ -89,7 +89,7 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: 'SET_LOADING' });
 
     try {
-      const res = await fetch('http://localhost:3001/api/data/search', {
+      const res = await fetch('https://localhost:3001/api/data/search', {
         credentials: 'include',
       });
 

@@ -33,7 +33,7 @@ const WantedForm = () => {
     }
 
    try {
-  const response = await fetch('http://localhost:3001/api/data/wanted', {
+  const response = await fetch('https://localhost:3001/api/data/wanted', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
