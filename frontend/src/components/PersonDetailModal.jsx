@@ -18,7 +18,7 @@ const PersonDetailModal = ({ person, onClose }) => {
           <div className="md:flex gap-4">
             <div className="md:w-1/3 mb-4 md:mb-0">
               <img
-                src={person.images?.[0]?.original || "https://via.placeholder.com/400x500?text=Foto+Indisponível"}
+                src={person.image || "https://placehold.co/400x500?text=Foto+Indisponível"}
                 alt={person.title}
                 className="w-full rounded-lg shadow"
               />
@@ -39,7 +39,9 @@ const PersonDetailModal = ({ person, onClose }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-sm">
                 <div>
-                  <h3 className="text-base font-semibold text-gray-800 mb-2 border-b pb-1">Informações Pessoais</h3>
+                  <h3 className="text-base font-semibold text-gray-800 mb-2 border-b pb-1">
+                    Informações Pessoais
+                  </h3>
                   <div className="space-y-1">
                     {person.sex && <div><strong>Sexo:</strong> {person.sex}</div>}
                     {person.race && <div><strong>Raça:</strong> {person.race}</div>}
@@ -54,7 +56,9 @@ const PersonDetailModal = ({ person, onClose }) => {
                 </div>
 
                 <div>
-                  <h3 className="text-base font-semibold text-gray-800 mb-2 border-b pb-1">Crimes</h3>
+                  <h3 className="text-base font-semibold text-gray-800 mb-2 border-b pb-1">
+                    Crimes
+                  </h3>
                   {person.subjects && (
                     <div className="flex flex-wrap gap-2 mb-2">
                       {person.subjects.map((subject, idx) => (
@@ -79,7 +83,9 @@ const PersonDetailModal = ({ person, onClose }) => {
 
               {person.details && (
                 <div className="mb-4">
-                  <h3 className="text-base font-semibold text-gray-800 mb-2 border-b pb-1">Detalhes</h3>
+                  <h3 className="text-base font-semibold text-gray-800 mb-2 border-b pb-1">
+                    Detalhes
+                  </h3>
                   <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-line">
                     {person.details}
                   </p>

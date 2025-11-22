@@ -60,6 +60,17 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                    
+                
+                <Route
+                  path="/buscar"
+                  element={
+                    <ProtectedRoute>
+                      <Home/>
+                    </ProtectedRoute>
+                  }
+                />
+                
                 
                 
               </Routes>

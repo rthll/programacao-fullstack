@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, AlertTriangle, User, Calendar, MapPin } from 'lucide-react';
+import { ArrowLeft, AlertTriangle } from 'lucide-react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { fbiAPI } from '../services/api';
 
@@ -14,16 +14,10 @@ const PersonDetail = () => {
     const fetchPerson = async () => {
       setLoading(true);
       setError(null);
-      
-      try {
 
+      try {
         const data = await fbiAPI.getPersonByUID(id);
-        setPerson(data.items?.[0] || null);
-        
-        await new Promise(resolve => setTimeout(resolve, 500));
-        const foundPerson = mockWantedPersons.find(p => p.uid === id);
-        setPerson(foundPerson);
-        
+        setPerson(data || null);
       } catch (err) {
         setError('Erro ao carregar dados da pessoa.');
         console.error('Erro:', err);
@@ -43,13 +37,13 @@ const PersonDetail = () => {
     return (
       <div className="container mx-auto px-4 py-8">
         <Link
-          to="/"
+          to="/home"
           className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Voltar à lista
         </Link>
-        
+
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             {error || 'Pessoa não encontrada'}
@@ -65,7 +59,7 @@ const PersonDetail = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <Link
-        to="/"
+        to="/home"
         className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
@@ -76,15 +70,15 @@ const PersonDetail = () => {
         <div className="md:flex">
           <div className="md:w-1/3">
             <img
-              src={person.images?.[0]?.original || "https://via.placeholder.com/400x500?text=Foto+Indisponível"}
+              src={person.image || "https://placehold.co/400x500?text=Foto+Indisponível"}
               alt={person.title}
               className="w-full h-96 md:h-full object-cover"
             />
           </div>
-          
+
           <div className="md:w-2/3 p-6">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">{person.title}</h1>
-            
+
             {person.warning_message && (
               <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6">
                 <div className="flex items-center">
@@ -96,7 +90,7 @@ const PersonDetail = () => {
 
             {person.reward_text && (
               <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6">
-                <strong>{person.reward_text}</strong>
+                <strong>💰 {person.reward_text}</strong>
               </div>
             )}
 
@@ -131,7 +125,7 @@ const PersonDetail = () => {
                     ))}
                   </div>
                 )}
-                
+
                 {person.dates_of_birth_used && (
                   <div>
                     <strong>Datas de Nascimento Usadas:</strong>
@@ -156,8 +150,8 @@ const PersonDetail = () => {
 
             <div className="bg-gray-100 p-4 rounded">
               <p className="text-sm text-gray-600">
-                <strong>Importante:</strong> Se você tiver informações sobre esta pessoa, 
-                entre em contato com as autoridades locais ou FBI imediatamente. 
+                <strong>Importante:</strong> Se você tiver informações sobre esta pessoa,
+                entre em contato com as autoridades locais ou FBI imediatamente.
                 <strong> Não tente abordar.</strong>
               </p>
             </div>

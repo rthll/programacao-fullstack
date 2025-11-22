@@ -30,16 +30,14 @@ const WantedCard = ({ person, onViewDetails }) => {
         overflow: 'hidden',
         boxShadow: 4,
         transition: 'transform 0.2s ease-in-out',
-        '&:hover': {
-          transform: 'scale(1.01)',
-        },
+        '&:hover': { transform: 'scale(1.01)' },
       }}
     >
       <Box sx={{ position: 'relative' }}>
         <CardMedia
           component="img"
           height="220"
-          image={person.images?.[0]?.original || 'https://via.placeholder.com/300x400?text=Foto+Indisponível'}
+          image={person.image || 'https://placehold.co/300x400?text=Foto+Indisponível'}
           alt={person.title}
           sx={{ objectFit: 'cover' }}
         />
@@ -61,7 +59,7 @@ const WantedCard = ({ person, onViewDetails }) => {
           />
         )}
         <Chip
-          label={`ID: ${person.uid}`}
+          label={`ID: ${person._id?.$oid || person._id || person.uid}`}
           size="small"
           sx={{
             position: 'absolute',
@@ -76,16 +74,7 @@ const WantedCard = ({ person, onViewDetails }) => {
       </Box>
 
       <CardContent sx={{ flexGrow: 1, px: 2, py: 1.5 }}>
-        <Typography
-          variant="h6"
-          component="h3"
-          sx={{
-            fontWeight: 700,
-            fontSize: '1rem',
-            mb: 1,
-            color: 'text.primary',
-          }}
-        >
+        <Typography variant="h6" component="h3" sx={{ fontWeight: 700, fontSize: '1rem', mb: 1 }}>
           {person.title}
         </Typography>
 
@@ -111,9 +100,7 @@ const WantedCard = ({ person, onViewDetails }) => {
             <Grid item xs={6}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Person sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
-                <Typography variant="body2" color="text.secondary">
-                  {person.sex}
-                </Typography>
+                <Typography variant="body2" color="text.secondary">{person.sex}</Typography>
               </Box>
             </Grid>
           )}
@@ -121,9 +108,7 @@ const WantedCard = ({ person, onViewDetails }) => {
             <Grid item xs={6}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <CalendarToday sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
-                <Typography variant="body2" color="text.secondary">
-                  {person.age_range}
-                </Typography>
+                <Typography variant="body2" color="text.secondary">{person.age_range}</Typography>
               </Box>
             </Grid>
           )}
@@ -131,26 +116,14 @@ const WantedCard = ({ person, onViewDetails }) => {
             <Grid item xs={12}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <LocationOn sx={{ fontSize: 16, mr: 0.5, color: 'text.secondary' }} />
-                <Typography variant="body2" color="text.secondary">
-                  {person.race}
-                </Typography>
+                <Typography variant="body2" color="text.secondary">{person.race}</Typography>
               </Box>
             </Grid>
           )}
         </Grid>
 
         {person.reward_text && (
-          <Alert
-            severity="warning"
-            sx={{
-              mb: 1,
-              py: 0.5,
-              '& .MuiAlert-message': {
-                fontSize: '0.8rem',
-                fontWeight: 600,
-              },
-            }}
-          >
+          <Alert severity="warning" sx={{ mb: 1, py: 0.5 }}>
             💰 {person.reward_text}
           </Alert>
         )}
@@ -168,9 +141,7 @@ const WantedCard = ({ person, onViewDetails }) => {
             fontSize: '0.8rem',
             fontWeight: 600,
             backgroundColor: '#1e3a8a',
-            '&:hover': {
-              backgroundColor: '#3b82f6',
-            },
+            '&:hover': { backgroundColor: '#3b82f6' },
           }}
         >
           Ver Detalhes
