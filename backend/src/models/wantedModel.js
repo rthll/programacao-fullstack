@@ -10,6 +10,14 @@ const wantedSchema = new mongoose.Schema({
   race: String,
   nationality: String,
   image: { type: String, required: true },
+  age_range: String,
+  height_min: String,
+  weight: String,
+  hair: String,
+  eyes: String,
+  place_of_birth: String,
+  dates_of_birth_used: [String],
+  subjects: [String],
 }, {
   timestamps: true
 });
