@@ -1,0 +1,40 @@
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:23:30.986Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:23:30.990Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:23:31.025Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:23:31.055Z"}
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:25:51.453Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:25:51.459Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:25:51.484Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:25:51.502Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:26:13.321Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:26:13.333Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:26:21.911Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:26:21.923Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:27:38.904Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:27:38.942Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:28:01.083Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:28:01.096Z"}
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:28:14.047Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:28:14.051Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:28:14.079Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:28:14.091Z"}
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:28:48.228Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:28:48.230Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:28:48.261Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:28:48.271Z"}
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:29:32.514Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:29:32.519Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:29:32.549Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:29:32.578Z"}
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:32:32.070Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:32:32.075Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:32:32.107Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:32:32.135Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:32:42.022Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:32:42.031Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:40:28.541Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:40:28.566Z"}
+{"level":"info","message":"Requisição: POST /api/auth/login - IP: ::1","timestamp":"2025-11-23T15:40:40.410Z"}
+{"level":"info","message":"Login bem-sucedido para usuário: admin - IP: ::1","timestamp":"2025-11-23T15:40:40.415Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:40:40.444Z"}
+{"level":"info","message":"Requisição: GET /api/data/search - IP: ::1","timestamp":"2025-11-23T15:40:40.452Z"}

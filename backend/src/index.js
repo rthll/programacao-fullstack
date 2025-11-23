@@ -17,19 +17,30 @@ import wantedRoutes from './routes/wantedRoutes.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
+//certificado e uso HTTPS
 const privateKey = fs.readFileSync(path.join(__dirname, 'crt', 'apache-selfsigned.key'), 'utf8');
 const certificate = fs.readFileSync(path.join(__dirname, 'crt', 'apache-selfsigned.crt'), 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
+//Config de pool
 const app = express();
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = 'mongodb://localhost:27017/fbi-wanted';
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB conectado'))
-  .catch(err => console.error('❌ Erro ao conectar:', err));
+// --- CONFIGURAÇÃO DO POOL DE CONEXÕES ---
+const mongooseOptions = {
+  maxPoolSize: 10, // Define o limite máximo de 10 conexões abertas simultaneamente
+  minPoolSize: 2,  // Mantém pelo menos 2 conexões sempre prontas 
+  serverSelectionTimeoutMS: 5000, // Timeout de 5s para desistir se o banco estiver fora
+  socketTimeoutMS: 45000, // Fecha conexões inativas por 45s para poupar recursos
+};
 
+// Passamos as opções como segundo parâmetro aqui
+mongoose.connect(MONGO_URI, mongooseOptions)
+  .then(() => console.log('MongoDB conectado com sucesso (Pool Ativado)'))
+  .catch(err => console.error('Erro ao conectar no MongoDB:', err));
+
+//compressão de arquivos e mensagens do server
 app.use(compression());
 app.use(cors({
   origin: ["http://localhost:5173", "https://localhost:5173"],
@@ -74,15 +85,12 @@ app.use((req, res, next) => {
 });
 
 
-
 app.use(sessionConfig);
 
-
 app.use('/api/auth', authRoutes);
-app.use('/api/data', dataRoutes);
 app.use('/api/data', wantedRoutes);
 
 const httpsServer = https.createServer(credentials, app);
 httpsServer.listen(PORT, () => {
-  console.log(`🚀 Servidor HTTPS rodando na porta ${PORT}`);
+  console.log(`Servidor HTTPS rodando na porta ${PORT}`);
 });
