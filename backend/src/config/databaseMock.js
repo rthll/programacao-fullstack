@@ -1,4 +1,4 @@
-export const mockDB = {
+export const databaseMock = {
   users: [
     { id: 1, username: "admin", password: "123" }
   ],

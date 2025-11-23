@@ -1,27 +1,15 @@
 import mongoose from 'mongoose';
 
-const wantedSchema = new mongoose.Schema({
+const wantedPersonSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   details: { type: String, required: true },
-  reward_text: String,
-  warning_message: String,
-  sex: String,
-  race: String,
-  nationality: String,
+  reward_text: { type: String, required: true },
+  warning_message: { type: String, required: true },
+  sex: { type: String, enum: ['Male', 'Female'], required: true },
+  race: { type: String, required: true },
+  nationality: { type: String, required: true },
   image: { type: String, required: true },
-  age_range: String,
-  height_min: String,
-  weight: String,
-  hair: String,
-  eyes: String,
-  place_of_birth: String,
-  dates_of_birth_used: [String],
-  subjects: [String],
-}, {
-  timestamps: true
-});
+}, { timestamps: true });
 
-const WantedPerson = mongoose.model('WantedPerson', wantedSchema);
-
-export default WantedPerson;
+export default mongoose.model('WantedPerson', wantedPersonSchema);

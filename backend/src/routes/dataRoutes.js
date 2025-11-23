@@ -10,7 +10,7 @@ function requireAuth(req, res, next) {
   next();
 }
 
-// Criar nova pessoa procurada
+
 router.post("/wanted", async (req, res) => {
   console.log("Dados recebidos:", req.body);
 
@@ -24,7 +24,7 @@ router.post("/wanted", async (req, res) => {
   }
 });
 
-// Buscar todas as pessoas procuradas
+
 router.get("/search", async (req, res) => {
   try {
     const records = await WantedPerson.find().sort({ createdAt: -1 });
@@ -35,7 +35,7 @@ router.get("/search", async (req, res) => {
   }
 });
 
-// Buscar uma pessoa específica pelo ID
+
 router.get("/search/:id", async (req, res) => {
   try {
     const person = await WantedPerson.findById(req.params.id);

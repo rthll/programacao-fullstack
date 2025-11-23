@@ -1,10 +1,14 @@
-import session from "express-session";
+import session from 'express-session';
 
-export default session({
-  secret: "super_seguro",
+const sessionConfig = session({
+  secret: 'sua-chave-secreta',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
-    maxAge: 1000 * 60 * 30 // 30 minutos
+    secure: true,      
+    httpOnly: true,    
+    sameSite: 'strict'
   }
 });
+
+export default sessionConfig;

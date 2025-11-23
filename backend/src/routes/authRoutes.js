@@ -1,56 +1,60 @@
 import express from "express";
-import UserModel from "../models/userModel.js";
+import { databaseMock } from "../config/databaseMock.js";
+import rateLimit from "express-rate-limit";
+import logger from "../config/logger.js";
+
 
 const router = express.Router();
 
-// Middleware de proteção
-function requireAuth(req, res, next) {
-  if (!req.session.user) {
-    return res.status(401).json({ error: "Não autorizado" });
-  }
-  next();
-}
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 5, 
+  message: "Muitas tentativas de login. Tente novamente mais tarde."
+});
 
-// Registro simples (opcional)
+router.post("/login", loginLimiter, (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    logger.warn(`Tentativa de login sem credenciais - IP: ${req.ip}`);
+    return res.status(400).json({ error: "Usuário e senha são obrigatórios." });
+  }
+
+  const user = databaseMock.users.find(
+    (u) => u.username === username && u.password === password
+  );
+
+  if (!user) {
+    logger.error(`Falha de login para usuário: ${username} - IP: ${req.ip}`);
+    return res.status(401).json({ error: "Credenciais inválidas." });
+  }
+
+  logger.info(`Login bem-sucedido para usuário: ${username} - IP: ${req.ip}`);
+  return res.json({ message: "Login realizado com sucesso!", user });
+});
+
+
+// Rota de registro
 router.post("/register", (req, res) => {
   const { username, password } = req.body;
 
-  if (UserModel.findByUsername(username)) {
-    return res.status(400).json({ error: "Usuário já existe" });
+  if (!username || !password) {
+    return res.status(400).json({ error: "Usuário e senha são obrigatórios." });
   }
 
-  const user = UserModel.createUser(username, password);
-  res.json({ message: "Usuário criado", user });
-});
-
-// Login
-router.post("/login", (req, res) => {
-  const { username, password } = req.body;
-
-  const user = UserModel.findByUsername(username);
-
-  if (!user || user.password !== password) {
-    return res.status(400).json({ error: "Credenciais inválidas" });
+  const exists = databaseMock.users.some((u) => u.username === username);
+  if (exists) {
+    return res.status(400).json({ error: "Usuário já existe." });
   }
 
-  req.session.user = {
-    id: user.id,
-    username: user.username
+  const newUser = {
+    id: databaseMock.users.length + 1,
+    username,
+    password,
   };
 
-res.json({
-  success: true, 
-  message: "Login realizado",
-  user: req.session.user
-});
-
-});
-
-// Logout
-router.post("/logout", requireAuth, (req, res) => {
-  req.session.destroy(() => {
-    res.json({ message: "Sessão encerrada" });
-  });
+  databaseMock.users.push(newUser);
+  return res.status(201).json({ message: "Usuário registrado!", user: newUser });
 });
 
 export default router;
