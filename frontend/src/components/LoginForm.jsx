@@ -9,28 +9,26 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      const response = await fetch('https://localhost:3001/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: email, password: senha }),
-      });
+  try {
+    const response = await fetch('https://localhost:3001/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: email, password: senha }),
+    });
 
-      const result = await response.json();
-   
-    console.log(result); 
+    const result = await response.json();
+    console.log(result);
 
-
-      if (result.success) {
-        localStorage.setItem('auth', 'true');
-        navigate('/home');
-      } else {
-        setErro(result.message);
-      }
-    } catch (error) {
-      setErro('Erro ao conectar com o servidor.');
+    if (response.ok) {
+      localStorage.setItem('auth', 'true');
+      navigate('/home');
+    } else {
+      setErro(result.message || 'Erro no login');
     }
-  };
+  } catch (error) {
+    setErro('Erro ao conectar com o servidor.');
+  }
+};
 
   return (
     <>

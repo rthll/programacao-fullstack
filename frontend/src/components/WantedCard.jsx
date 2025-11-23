@@ -36,10 +36,17 @@ const WantedCard = ({ person, onViewDetails }) => {
       <Box sx={{ position: 'relative' }}>
         <CardMedia
           component="img"
-          height="220"
           image={person.image || 'https://placehold.co/300x400?text=Foto+Indisponível'}
           alt={person.title}
-          sx={{ objectFit: 'cover' }}
+          sx={{
+            width: '100%',
+            height: 300,
+            objectFit: 'cover',
+            backgroundColor: '#eee',
+          }}
+          onError={(e) => {
+            e.target.src = 'https://placehold.co/300x400?text=Foto+Indisponível';
+          }}
         />
         {person.warning_message && (
           <Chip
@@ -58,7 +65,7 @@ const WantedCard = ({ person, onViewDetails }) => {
             }}
           />
         )}
-       
+
       </Box>
 
       <CardContent sx={{ flexGrow: 1, px: 2, py: 1.5 }}>

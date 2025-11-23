@@ -96,17 +96,7 @@ const Home = () => {
                     setShowModal(true);
                   }}
                 />
-                <Button
-                  size="small"
-                  onClick={() =>
-                    isFavorite(person.uid)
-                      ? removeFavorite(person.uid)
-                      : addFavorite(person)
-                  }
-                  sx={{ mt: 1 }}
-                >
-                  {isFavorite(person.uid) ? '⭐ Favorito' : '☆ Favoritar'}
-                </Button>
+               
               </Box>
             ))}
           </div>
